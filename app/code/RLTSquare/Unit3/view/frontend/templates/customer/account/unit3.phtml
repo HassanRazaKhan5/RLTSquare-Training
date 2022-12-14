@@ -1,0 +1,35 @@
+<?php
+
+/**
+ * @var CustomerDetails $block ;
+ */
+use RLTSquare\Unit3\Block\CustomerDetails;
+?>
+<p>Customer Details</p>
+<hr>
+<?php if ($block->checkIsConfigurationEnabled()): ?>
+    <table>
+        <thead>
+        <tr>
+            <td><strong>Username</strong></td>
+            <td><strong>Password</strong></td>
+            <td><strong>Environment</strong></td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <?php if ($block->checkEnvironment() == 'development' or $block->checkEnvironment() == 'staging'): ?>
+                <td><?= $block->userName(); ?></td>
+                <td><?= $block->userPassword(); ?></td>
+                <td><?= $block->checkEnvironment(); ?></td>
+            <?php elseif ($block->checkEnvironment() == 'production'): ?>
+                <td><?= $block->userName(); ?></td>
+                <td>-</td>
+                <td><?= $block->checkEnvironment(); ?></td>
+            <?php endif; ?>
+        </tr>
+        </tbody>
+    </table>
+<?php else: ?>
+    <p>Please enable configuration to see the required results</p>
+<?php endif; ?>

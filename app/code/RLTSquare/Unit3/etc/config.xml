@@ -1,0 +1,20 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <!-- SECTION: Name -->
+        <unit3>
+            <!-- GROUP: settings -->
+            <Settings>
+                <!-- FIELD: check configuration enabled or not -->
+                <configuration/>
+                <!-- FIELD: default username remains empty-->
+                <username/>
+                <!-- FIELD: default password remains empty -->
+                <password/>
+                <!-- FIELD: default environment is staging -->
+                <env>staging</env>
+            </Settings>
+        </unit3>
+    </default>
+</config>
