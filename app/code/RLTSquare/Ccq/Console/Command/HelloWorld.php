@@ -21,31 +21,39 @@ class HelloWorld extends Command
     /**
      * @const
      */
-    private const VAR1 = 'var1';
+    private const INPUT_OPTION_VAR1 = 'var1';
+
     /**
      * @const
      */
-    private const VAR2 = 'var2';
+    private const INPUT_OPTION_VAR2 = 'var2';
+
     /**
      * @const
      */
     private const TOPIC = 'rltsquare_hello_world';
+
     /**
      * @var PublisherInterface
      */
     private PublisherInterface $publisher;
+
     /**
      * @var LoggerInterface
      */
     private LoggerInterface $logger;
+
     /**
      * @var Json
      */
     private Json $json;
 
     /**
+     * constructor
+     *
      * @param LoggerInterface $logger
      * @param PublisherInterface $publisher
+     * @param Json $json
      * @param string|null $name
      */
     public function __construct(
@@ -69,13 +77,13 @@ class HelloWorld extends Command
         $this->setDescription('RLTSquare Training Unit2 Command');
         $this->setDefinition([
             new InputOption(
-                self::VAR1,
+                self::INPUT_OPTION_VAR1,
                 null,
                 InputOption::VALUE_REQUIRED,
                 'var1'
             ),
             new InputOption(
-                self::VAR2,
+                self::INPUT_OPTION_VAR2,
                 null,
                 InputOption::VALUE_REQUIRED,
                 'var2'
@@ -98,7 +106,7 @@ class HelloWorld extends Command
     ): int {
         $exitCode = 0;
         try {
-            if (($var1 = $input->getOption(self::VAR1)) and ($var2 = $input->getOption(self::VAR2))) {
+            if (($var1 = $input->getOption(self::INPUT_OPTION_VAR1)) && ($var2 = $input->getOption(self::INPUT_OPTION_VAR2))) {
                 $output->writeln("<info>added to rltsquare_hello_world job to a queue, passing it these $var1 && $var2 two parameters.</info>");
                 $this->publisher->publish(self::TOPIC, $this->json->serialize(implode(',', [
                     'var1' => $var1,

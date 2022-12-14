@@ -4,9 +4,7 @@
     <type name="Magento\Framework\Console\CommandListInterface">
         <arguments>
             <argument name="commands" xsi:type="array">
-                <item name="rltsquareccq_helloworldcommand" xsi:type="object">
-                    RLTSquare\Ccq\Console\Command\HelloWorld
-                </item>
+                <item name="rltsquareccq_helloworldcommand" xsi:type="object">RLTSquare\Ccq\Console\Command\HelloWorld</item>
             </argument>
         </arguments>
     </type>
