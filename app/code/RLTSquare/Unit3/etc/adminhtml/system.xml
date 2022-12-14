@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <!-- START: Tab Unit3 -->
+        <tab id="rltsquare" translate="label" sortOrder="10">
+            <label>RLTSquare</label>
+        </tab>
+        <!-- START: section Unit3 -->
+        <section id="unit3" showInDefault="1" showInWebsite="0" showInStore="1" sortOrder="10" translate="label">
+            <label>Unit3</label>
+            <tab>rltsquare</tab>
+            <resource>RLTSquare_Unit3::rltsquare_config</resource>
+            <!-- START: group Settings -->
+            <group id="Settings" translate="label" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="1">
+                <label>Settings</label>
+                <!-- START: field configuration -->
+                <field id="configuration" showInDefault="1" showInWebsite="0" showInStore="1" sortOrder="10"
+                       translate="label" type="select">
+                    <label>Enable Unit3 Configuration</label>
+                    <comment>select yes or no to enable/disable configuration</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <!-- END: field configuration -->
+                <!-- START: field username -->
+                <field id="username" showInDefault="1" showInWebsite="0" showInStore="1" sortOrder="10" translate="label" type="text">
+                    <label>Username</label>
+                    <comment>Enter a username</comment>
+                </field>
+                <!-- END: field username -->
+                <!-- START: field password -->
+                <field id="password" showInDefault="1" showInWebsite="0" showInStore="1" sortOrder="10" translate="label" type="obscure">
+                    <label>Password</label>
+                    <comment>Enter a password</comment>
+                    <backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
+                </field>
+                <!-- END: field password -->
+                <!-- START: field environment -->
+                <field id="env" showInDefault="1" showInWebsite="0" showInStore="1" sortOrder="10" translate="label" type="select">
+                    <label>Settings</label>
+                    <comment>select your environment</comment>
+                    <source_model>RLTSquare\Unit3\Model\EnvironmentOptions</source_model>
+                </field>
+                <!-- END: field environment -->
+            </group>
+            <!-- END: group settings -->
+        </section>
+        <!-- END: section unit3 -->
+    </system>
+</config>
