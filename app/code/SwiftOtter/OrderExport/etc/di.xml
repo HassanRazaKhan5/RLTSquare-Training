@@ -3,8 +3,14 @@
     <type name="Magento\Framework\Console\CommandListInterface">
         <arguments>
             <argument name="commands" xsi:type="array">
-                <item name="orderexportRun" xsi:type="array">SwiftOtter\OrderExport\Console\Command\OrderExport</item>
+                <item name="orderExportRun" xsi:type="object">SwiftOtter\OrderExport\Console\Command\OrderExport</item>
             </argument>
         </arguments>
     </type>
-</config>
+    <type name="SwiftOtter\OrderExport\Action\CollectOrderData">
+        <arguments>
+            <argument name="orderDataCollector" xsi:type="array">
+                <item name="order_header_data" xsi:type="object">SwiftOtter\OrderExport\Action\OrderDataCollector\OrderHeaderData</item>
+            </argument>
+        </arguments>
+    </type></config>
