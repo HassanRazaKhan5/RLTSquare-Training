@@ -2,6 +2,10 @@
 
 namespace SwiftOtter\OrderExport\Console\Command;
 
+use DateTime;
+use Exception;
+use SwiftOtter\OrderExport\Model\HeaderData;
+use SwiftOtter\OrderExport\Model\HeaderDataFactory;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -9,25 +13,36 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
 /**
- *
+ *OrderExport command class.
  */
 class OrderExport extends Command
 {
     /**
-     *
+     * @const
      */
-    const ARG_NAME_ORDER_ID = 'order-id';
+    private const ARG_NAME_ORDER_ID = 'order-id';
     /**
-     *
+     * @const
      */
-    const OPTION_NAME_SHIP_DATE = 'ship-date';
+    private const OPTION_NAME_SHIP_DATE = 'ship-date';
     /**
-     *
+     * @const
      */
-    const OPTION_NAME_MERCHANT_NOTES = 'notes';
+    private const OPTION_NAME_MERCHANT_NOTES = 'notes';
+
+    private HeaderDataFactory $headerDataFactory;
 
     /**
-     * @return void
+     * constructor.
+     */
+    public function __construct(HeaderDataFactory $headerDataFactory, string $name = null)
+    {
+        $this->{$headerDataFactory} = $headerDataFactory;
+        parent::__construct($name);
+    }
+
+    /**
+     * method to configure command.
      */
     protected function configure()
     {
@@ -51,16 +66,31 @@ class OrderExport extends Command
     }
 
     /**
-     * @param InputInterface $input
-     * @param OutputInterface $output
+     * method to write command code.
      *
-     * @return int
+     * @throws Exception
      */
     protected function execute(
         InputInterface $input,
         OutputInterface $output
     ): int {
-            $output->writeln('Hello World, from a CLI Command!' );
+        $orderId = (int) $input->getArgument(self::ARG_NAME_ORDER_ID);
+        $notes = $input->getOption(self::OPTION_NAME_MERCHANT_NOTES);
+        $shipDate = $input->getOption(self::OPTION_NAME_SHIP_DATE);
+
+        /**
+         * @var HeaderData $headerData
+         */
+        $headerData = $this->headerDataFactory->create();
+
+        if ($shipDate) {
+            $headerData->setShipDate(new DateTime($shipDate));
+        }
+        if ($notes) {
+            $headerData->setMerchantNotes($notes);
+        }
+        $output->writeln(print_r($headerData, true));
+
         return 0;
     }
 }
