@@ -31,6 +31,6 @@ class Config
      */
     public function isEnabled(string $scopeType = ScopeInterface::SCOPE_STORE, ?string $scopeCode = null): bool
     {
-        return $this->scopeConfig->isSetFlag(self::CONFIG_PATH_ENABLED);
+        return $this->scopeConfig->isSetFlag(self::CONFIG_PATH_ENABLED,$scopeType,$scopeCode);
     }
 }
