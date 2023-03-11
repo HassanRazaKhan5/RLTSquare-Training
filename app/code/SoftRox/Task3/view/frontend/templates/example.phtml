@@ -1,0 +1,57 @@
+<button id="example-modal-button" data-mage-init='{"example-modal": {"target": "#modal-content"}}'>
+    Enter Form
+</button>
+<div id="modal-content" style="display: none">
+    <div id="my-modal">
+        <form>
+            <label for="name">Name:</label>
+            <input type="text" id="name"/>
+            <label for="age">Age:</label>
+            <input type="number" id="age"/>
+            <label for="dob">Date of Birth:</label>
+            <input type="date" id="dob" name="dob"/>
+            <label for="sex">Sex:</label>
+            <select id="sex" name="sex">
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+            </select>
+            <input type="submit" name="Submit" id="butt">
+        </form>
+    </div>
+</div>
+
+<div id="new-modal-content" style="display: none;">
+    <div id="my-new-modal">
+        <label for="age">Age:</label>
+        <p id="aged"></p>
+    </div>
+</div>
+
+<script>
+    require(['jquery', 'Magento_Ui/js/modal/modal'], function ($, modal) {
+        var options = {
+            type: 'popup',
+            responsive: true,
+            innerScroll: true,
+            title: 'Example Modal',
+             buttons: [
+                 {
+                text: $.mage.__('Submit'),
+                class: 'action primary',
+                click: function () {
+                    $('#new-modal-content').modal('openModal');
+                    $('#modal-content').modal('closeModal');
+                    document.getElementById('aged').innerHTML = document.getElementById("age").value
+                    this.closeModal();
+                 }
+                }
+             ],
+        };
+        modal(options, $('#new-modal-content'));
+        modal(options, $('#modal-content'));
+        $('#example-modal-button').click(function () {
+            $('#modal-content').modal('openModal');
+            document.getElementById('age').value = ''
+        });
+    });
+</script>
